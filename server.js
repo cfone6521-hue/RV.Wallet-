@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
+
 const app = express();
-const PORT = process.env.PORT || 3888;
+const PORT = process.env.PORT || 10000;
 
 app.use(cors());
 app.use(express.json());
@@ -19,7 +20,10 @@ app.get('/api/balances', async (req, res) => {
   try {
     const { address, chainId } = req.query;
     if (!address) {
-      return res.status(400).json({ success: false, error: 'Endereço é obrigatório' });
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Endereço é obrigatório' 
+      });
     }
     res.json({
       success: true,
@@ -31,9 +35,13 @@ app.get('/api/balances', async (req, res) => {
 });
 
 app.get('/api/transactions', async (req, res) => {
-  res.json({ success: true, data: { data: [{ transactionList: [] }] } });
+  res.json({ 
+    success: true, 
+    data: { data: [{ transactionList: [] }] } 
+  });
 });
 
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
+  console.log(`📡 API disponível em: https://rv-web3.onrender.com`);
 });
