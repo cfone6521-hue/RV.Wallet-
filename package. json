@@ -1,0 +1,18 @@
+{
+  "name": "rv-web3",
+  "version": "1.0.0",
+  "description": "RV Web3 — Painel de ativos digitais e dados blockchain",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "cors": "^2.8.5",
+    "node-fetch": "^3.3.2"
+  },
+  "keywords": ["web3", "blockchain", "dashboard"],
+  "author": "RV Web3",
+  "license": "MIT"
