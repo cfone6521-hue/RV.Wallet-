@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07100e">
+  <meta name="description" content="RV Web3 — painel de ativos digitais, carteiras e dados blockchain.">
+  <title>RV Web3 — Blockchain Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a href="/" class="brand">
+        <span class="brand-icon">R</span>
+        <span>
+          <strong>RV WEB3</strong>
+          <small>BLOCKCHAIN SYSTEM</small>
+        </span>
+      </a>
+      <div class="side-label">PLATAFORMA</div>
+      <nav class="navigation">
+        <a href="#overview" class="nav-item active"><span>◈</span> Visão geral</a>
+        <a href="#wallet" class="nav-item"><span>▣</span> Carteira</a>
+        <a href="#assets" class="nav-item"><span>◇</span> Ativos digitais</a>
+        <a href="#transactions" class="nav-item"><span>⇄</span> Transações</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="status-dot"></span>
+        <span>Interface Web3</span>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">PAINEL BLOCKCHAIN</span>
+          <h1>Visão geral</h1>
+        </div>
+        <div class="topbar-right">
+          <span class="network-badge">
+            <span class="status-dot"></span> Ethereum Mainnet
+          </span>
+          <button id="connectButton" class="button button-primary" type="button">Conectar carteira</button>
+        </div>
+      </header>
+      <section class="welcome-panel" id="overview">
+        <div class="welcome-copy">
+          <span class="eyebrow">RV WEB3 ECOSYSTEM</span>
+          <h2>Seus ativos.<br><span>Sua conexão com a blockchain.</span></h2>
+          <p>Consulte saldos, acompanhe transações e visualize dados de carteiras através da integração com a Binance Web3 Wallet API.</p>
+          <div class="welcome-actions">
+            <button id="refreshButton" class="button button-primary" type="button">Atualizar painel</button>
+            <a class="button button-secondary" href="#assets">Ver ativos</a>
+          </div>
+        </div>
+        <div class="orbital-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="orbit orbit-three"></div>
+          <div class="orbital-core">RV</div>
+          <div class="orbital-node node-one"></div>
+          <div class="orbital-node node-two"></div>
+          <div class="orbital-node node-three"></div>
+        </div>
+      </section>
+      <section class="connection-card" id="wallet">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">WALLET CONNECTION</span>
+            <h2>Minha carteira</h2>
+          </div>
+          <span id="connectionStatus" class="tag">Desconectada</span>
+        </div>
+        <div class="wallet-content">
+          <div class="wallet-avatar">◈</div>
+          <div class="wallet-info">
+            <strong id="walletTitle">Nenhuma carteira conectada</strong>
+            <p id="walletAddress">Conecte uma carteira EVM compatível para começar.</p>
+          </div>
+          <button id="copyAddressButton" class="button button-secondary" type="button" disabled>Copiar endereço</button>
+        </div>
+        <div class="form-row">
+          <label for="chainSelect">Rede blockchain</label>
+          <select id="chainSelect">
+            <option value="1">Ethereum Mainnet</option>
+            <option value="56">BNB Smart Chain</option>
+            <option value="137">Polygon</option>
+            <option value="8453">Base</option>
+            <option value="42161">Arbitrum One</option>
+            <option value="10">Optimism</option>
+          </select>
+        </div>
+        <p class="help-text">Selecione a rede para consultar saldos e transações.</p>
+      </section>
+      <section class="section-block" id="assets">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">DIGITAL ASSETS</span>
+            <h2>Ativos digitais</h2>
+          </div>
+          <span class="tag">Consulta de saldos</span>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span class="stat-icon">◇</span>
+            <span class="stat-label">Tokens encontrados</span>
+            <strong id="tokenCount">—</strong>
+            <small>Na rede selecionada</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon">◈</span>
+            <span class="stat-label">Carteira</span>
+            <strong id="walletState">Offline</strong>
+            <small>Estado da conexão</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon">↗</span>
+            <span class="stat-label">Última consulta</span>
+            <strong id="lastUpdate">—</strong>
+            <small>Horário local</small>
+          </article>
+        </div>
+        <div class="data-card">
+          <div class="data-card-header">
+            <div><h3>Saldo de tokens</h3><p>Dados retornados pela API</p></div>
+            <span id="balanceBadge" class="tag">Aguardando consulta</span>
+          </div>
+          <div id="balanceContainer" class="data-container">
+            <div class="empty-state">
+              <div class="empty-icon">◇</div>
+              <strong>Nenhum dado carregado</strong>
+              <p>Conecte sua carteira e clique em "Atualizar painel".</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-block" id="transactions">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">ON-CHAIN ACTIVITY</span>
+            <h2>Histórico de transações</h2>
+          </div>
+          <button id="transactionsButton" class="button button-secondary" type="button">Consultar histórico</button>
+        </div>
+        <div class="data-card">
+          <div id="transactionsContainer" class="data-container">
+            <div class="empty-state">
+              <div class="empty-icon">⇄</div>
+              <strong>Seu histórico aparecerá aqui</strong>
+              <p>Conecte uma carteira e consulte as transações disponíveis.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="footer">
+        <span>© 2026 RV Web3</span>
+        <span>Blockchain Dashboard</span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
